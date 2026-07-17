@@ -18,6 +18,7 @@ trading_bot/
   tests/
     test_validators.py  # input validation unit tests
     test_orders.py       # order-flow unit tests (mocked client, no network)
+    test_client_retry.py # retry/timeout safety tests (no duplicate orders)
   cli.py               # CLI entry point
   README.md
   requirements.txt
@@ -87,6 +88,23 @@ Binance client (no real network calls or credentials required):
 ```bash
 python -m unittest discover tests -v
 ```
+
+## Retries & Timeouts
+
+Every HTTP call has an explicit 10s timeout. Order placement retries up to
+twice on network failures (connection errors, read timeouts) — but not
+naively:
+
+- Each order gets a unique client-generated ID (`newClientOrderId`).
+- On a timeout, the request's outcome is unknown — it may have reached
+  Binance despite the client not getting a response. Before retrying, the
+  bot looks up the order by that client ID. If it exists, the original
+  request succeeded and is returned as-is — no duplicate order is placed.
+- Definitive API rejections (bad symbol, insufficient margin, filter
+  violations) are never retried, since retrying identical invalid input
+  just fails identically again — only genuine network-level failures are.
+
+See `tests/test_client_retry.py` for the scenarios this guards against.
 
 ## Error Handling
 
