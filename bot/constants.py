@@ -10,4 +10,4 @@ VALID_ORDER_TYPES = {ORDER_TYPE_MARKET, ORDER_TYPE_LIMIT}
 
 TIME_IN_FORCE_GTC = "GTC"
 
-FUTURES_TESTNET_BASE_URL = "https://testnet.binancefuture.com"
+FUTURES_TESTNET_BASE_URL = "https://demo-fapi.binance.com"

@@ -37,9 +37,11 @@ class FuturesTestnetClient:
             )
 
         self._client = Client(api_key, api_secret, testnet=True)
-        # Belt-and-braces: python-binance's testnet flag already points futures
-        # requests at testnet.binancefuture.com, but we set it explicitly too
-        # in case the installed version's default changes.
+        # As of mid-2026, Binance folded the standalone Futures Testnet into
+        # "Demo Trading" under the main account, with a new API host
+        # (demo-fapi.binance.com). python-binance's built-in testnet=True flag
+        # may still point at the old testnet.binancefuture.com host, so we
+        # override it explicitly here to the current one.
         self._client.FUTURES_URL = FUTURES_TESTNET_BASE_URL + "/fapi"
 
         logger.debug("Initialized FuturesTestnetClient against %s", FUTURES_TESTNET_BASE_URL)

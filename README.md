@@ -26,13 +26,17 @@ trading_bot/
 
 ## Setup
 
-1. **Create a Binance Futures Testnet account**
-   Go to https://testnet.binancefuture.com, log in with a GitHub account, and
-   activate Futures Testnet trading.
+1. **Create/access your Binance Demo Trading account**
+   As of mid-2026, Binance folded the standalone Futures Testnet into "Demo
+   Trading," accessed via your regular Binance account (`testnet.binancefuture.com`
+   now redirects to `demo.binance.com`). Log in, switch into Demo Trading mode.
 
 2. **Generate API credentials**
-   On the testnet site, go to the API Key section and generate a key/secret
-   pair. These are separate from real Binance credentials — testnet-only.
+   From the account menu, open **Demo Trading API** → **API Management** →
+   **Create API** → **System generated** (HMAC). Enable **Reading**,
+   **Spot & Margin & Stock Trading**, and **Futures** permissions. Copy the
+   API Key and Secret immediately — the secret is only shown once. These are
+   demo-only credentials, separate from any real Binance API keys.
 
 3. **Clone this repo and install dependencies**
    ```bash
@@ -96,6 +100,11 @@ The app handles and logs, without crashing:
 
 ## Assumptions
 
+- **Testnet endpoint**: the task spec listed `testnet.binancefuture.com` as
+  the base URL. As of mid-2026 Binance retired that standalone testnet and
+  folded it into "Demo Trading" (`demo-fapi.binance.com`), reachable only
+  through a regular Binance account's API Management page. This app targets
+  the current live endpoint rather than the deprecated one.
 - Only USDT-M Futures (not Coin-M) is in scope, per the task description.
 - LIMIT orders use `timeInForce=GTC` (Good-Til-Cancelled) since the task
   spec didn't require configurable time-in-force.
