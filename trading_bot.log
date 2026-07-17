@@ -1,0 +1,9 @@
+2026-07-17 13:09:48 | DEBUG    | trading_bot.client | Initialized FuturesTestnetClient against https://demo-fapi.binance.com
+2026-07-17 13:09:48 | INFO     | trading_bot.client | REQUEST  {'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'MARKET', 'quantity': 0.01}
+2026-07-17 13:09:48 | INFO     | trading_bot.client | RESPONSE symbol=BTCUSDT orderId=22266310479 status=NEW executedQty=0.0000 avgPrice=None
+2026-07-17 13:10:04 | DEBUG    | trading_bot.client | Initialized FuturesTestnetClient against https://demo-fapi.binance.com
+2026-07-17 13:10:04 | INFO     | trading_bot.client | REQUEST  {'symbol': 'BTCUSDT', 'side': 'SELL', 'type': 'LIMIT', 'quantity': 0.01, 'price': 59743.8, 'timeInForce': 'GTC'}
+2026-07-17 13:10:04 | ERROR    | trading_bot.client | ERROR (api) symbol=BTCUSDT -> APIError(code=-4024): Limit price can't be lower than 59767.92.
+2026-07-17 13:10:19 | DEBUG    | trading_bot.client | Initialized FuturesTestnetClient against https://demo-fapi.binance.com
+2026-07-17 13:10:19 | INFO     | trading_bot.client | REQUEST  {'symbol': 'BTCUSDT', 'side': 'SELL', 'type': 'LIMIT', 'quantity': 0.01, 'price': 60372.7, 'timeInForce': 'GTC'}
+2026-07-17 13:10:20 | INFO     | trading_bot.client | RESPONSE symbol=BTCUSDT orderId=22266358822 status=NEW executedQty=0.0000 avgPrice=None
